@@ -1,6 +1,7 @@
 from flask import abort, request
 
 from authz import db
+from authz.decorator import auth_required
 from authz.model import User
 from authz.schema import UserSchema
 
@@ -33,7 +34,7 @@ class UserController:
 		return{
 			"user": user_schema.dump(user)
 		},201	
-				
+	@auth_required		
 	def get_users():
 		try:
 			users = User.query.all()
@@ -43,7 +44,7 @@ class UserController:
 		return {
 			"users": users_schema.dump(users)
 		},200
-		
+	@auth_required	
 	def get_user(user_id):	
 		try:
 			user = User.query.get(user_id)
@@ -55,7 +56,7 @@ class UserController:
 		return {
 			"user": user_schema.dump(user)
 		},200
-		
+	@auth_required	
 	def update_user(user_id):
 		if request.content_type != "application/json":
 			abort(415)
@@ -82,7 +83,7 @@ class UserController:
 		return {
 			"user": user_schema.dump(user)
 		},200
-		
+	@auth_required	
 	def delete_user(user_id):	
 		try:	
 			user = User.query.get(user_id)
