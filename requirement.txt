@@ -20,7 +20,6 @@ MarkupSafe==1.1.1
 marshmallow==3.12.1
 marshmallow-sqlalchemy==0.25.0
 packaging==20.9
-pkg-resources==0.0.0
 pluggy==0.13.1
 py==1.10.0
 pycparser==2.20
